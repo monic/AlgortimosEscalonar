@@ -1,31 +1,46 @@
 import sys
-from fifo import *
-from ssf import *
-from  elevador import *
+from fcfs import *
+from sstf import *
+from elevador import *
 import copy
 
+
 def main():
-    ultimo = int(sys.stdin.readline()) #Leitura do ultimo número
-    inicio = int(sys.stdin.readline()) #Leitura do inicio
-    requisicoes = map(int,sys.stdin.readline())
+    arquivo = open("entrada.txt")
+    conteudo = []
+    #Realiza a leitura das linhas do arquivo
+    for line in arquivo:
+        conteudo.append(int(line))
+    # Leitura do ultimo número
+    ultimo = int (conteudo[0])
+    # Leitura do inicio
+    inicio = int(conteudo [1])
+    #Leitura das requisições de acesso
+    requisicoes = conteudo[2:]
 
     # Instanciando os objetos da classe
-    fifo = FIFO()
-    leitura_fifo = fifo.fifo(inicio,requisicoes)
+    fcfs = FCFS()
+    leitura_fcfs = fcfs.fcfs(inicio,requisicoes)
 
     #Instanciando o algortimo SSF
-    ssf = SSF()
-    leitura_ssf = ssf.ssf(inicio, copy.deepcopy(requisicoes))
+    sstf = SSTF()
+    leitura_sstf = sstf.sstf(inicio, copy.deepcopy(requisicoes))
 
     #Instanciando o algortimo do elevador
     elevador = Elevador()
     leitura_elevador = elevador.elevador(ultimo,inicio,requisicoes)
 
-    #Saida dos valores
-    saida = 'FIFO {0}\nSSF {1}\nElevador{2}'
+    # Exibe a saida
+    print("-------------------------------------")
+    print("|        Resultados obtidos         |")
+    print("-------------------------------------")
+    print("|   FCFS  |", leitura_fcfs, " setores percorridos|")
+    print("-------------------------------------")
+    print("|   SSTF  |", leitura_sstf, " setores percorridos|")
+    print("-------------------------------------")
+    print("| Elevador|", leitura_elevador, " setores percorridos|")
+    print("-------------------------------------")
 
-    #Apresenta a saída dos valores
-    print(saida.format(leitura_fifo,leitura_ssf,leitura_elevador))
 
 if __name__ == "__main__":
     main()
