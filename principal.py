@@ -20,15 +20,15 @@ def main():
 
     # Instanciando os objetos da classe
     fcfs = FCFS()
-    leitura_fcfs = fcfs.fcfs(inicio,requisicoes)
+    leitura_fcfs = fcfs.execute(inicio,requisicoes)
 
     #Instanciando o algortimo SSF
     sstf = SSTF()
-    leitura_sstf = sstf.sstf(inicio, copy.deepcopy(requisicoes))
+    leitura_sstf = sstf.execute(inicio, copy.deepcopy(requisicoes))
 
     #Instanciando o algortimo do elevador
     elevador = Elevador()
-    leitura_elevador = elevador.elevador(ultimo,inicio,requisicoes)
+    leitura_elevador = elevador.execute(ultimo,inicio,requisicoes)
 
     # Exibe a saida
     print("-------------------------------------")

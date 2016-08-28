@@ -2,7 +2,7 @@ import math
 
 class FCFS:
 
-    def fcfs(self, inicio,requisicoes):
+    def execute(self, inicio,requisicoes):
         # Inicializa o contador de cilindros percorridos com zero
         setores_cilindro = 0
         # Configura a posicao inicial do braco do disco
