@@ -1,25 +1,18 @@
 import math
 
-class FIFO:
+class FCFS:
 
-    def fifo(self, inicio,requisicoes):
+    def fcfs(self, inicio,requisicoes):
+        # Inicializa o contador de cilindros percorridos com zero
         setores_cilindro = 0
+        # Configura a posicao inicial do braco do disco
         posicao_atual = inicio
 
-        menor = filter(lambda x:x < posicao_atual,requisicoes) #Retornando uma função
-        menor.sort()
-        menor.reverse()
+        # Percorre os cilindros
+        for requisicao in requisicoes:
+            setores_cilindro += int(math.fabs(requisicao - posicao_atual))
+            posicao_atual = requisicao
 
-        maior = filter(lambda x:x > posicao_atual,requisicoes)
-        maior.sort()
-
-        for requisicoes in maior:
-            setores_cilindro += int(math.fabs(requisicoes - posicao_atual))
-            posicao_atual = requisicoes
-
-        for requisicoes in menor:
-            setores_cilindro += int(math.fabs(requisicoes -posicao_atual))
-            posicao_atual = requisicoes
-
+        # Retorna o numero de cilindros percorridos
         return setores_cilindro
     
